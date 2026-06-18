@@ -1,4 +1,9 @@
-const FOOTER_LINKS = {
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+const FOOTER_LINKS: Record<string, FooterLink[]> = {
   Company: [
     { label: 'About', href: '#' },
     { label: 'Careers', href: '#' },

@@ -3,7 +3,12 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
-const NAV_LINKS = [
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const NAV_LINKS: NavLink[] = [
   { label: 'Services', href: '#services' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Testimonials', href: '#testimonials' },
@@ -11,10 +16,10 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -16,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Yami — Digital Agency | Web Development & Design",
   description:
     "Yami is a premium digital agency specializing in high-conversion web development, modern UI/UX design, and full-stack engineering. We build websites that transform visitors into loyal customers.",
@@ -28,7 +29,7 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"

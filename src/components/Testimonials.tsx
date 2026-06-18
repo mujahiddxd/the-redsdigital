@@ -1,4 +1,12 @@
-const TESTIMONIALS = [
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  initials: string;
+}
+
+const TESTIMONIALS: Testimonial[] = [
   {
     quote: "Yami completely transformed our online presence. Within three months of launch, our lead generation increased by 68%. Their attention to detail and understanding of user psychology is truly world-class.",
     name: "Sarah Chen",

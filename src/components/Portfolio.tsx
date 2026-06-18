@@ -1,4 +1,11 @@
-const PROJECTS = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  category: string;
+}
+
+const PROJECTS: Project[] = [
   {
     title: 'NovaPay Dashboard',
     description: 'A real-time fintech analytics dashboard with dynamic data visualizations, multi-currency support, and enterprise-grade security integrations.',

@@ -1,3 +1,9 @@
+interface CodeLine {
+  num: string;
+  code: string;
+  color: string;
+}
+
 export default function Hero() {
   return (
     <section
@@ -52,6 +58,26 @@ export default function Hero() {
 
 /* ── Inline IDE Mockup Component ── */
 function IDEMockup() {
+  const codeLines: CodeLine[] = [
+    { num: '1', code: 'export default function Hero() {', color: 'text-ink' },
+    { num: '2', code: '  return (', color: 'text-body' },
+    { num: '3', code: '    <section className="hero">', color: 'text-body' },
+    { num: '4', code: '      <h1>', color: 'text-body' },
+    { num: '5', code: '        We build websites that', color: 'text-primary' },
+    { num: '6', code: '        convert visitors into', color: 'text-primary' },
+    { num: '7', code: '        customers', color: 'text-primary' },
+    { num: '8', code: '      </h1>', color: 'text-body' },
+    { num: '9', code: '      <Button label="Start" />', color: 'text-body' },
+    { num: '10', code: '    </section>', color: 'text-body' },
+    { num: '11', code: '  );', color: 'text-body' },
+    { num: '12', code: '}', color: 'text-ink' },
+  ];
+
+  const explorerFiles: string[] = [
+    'src/', '  components/', '    Hero.jsx', '    Navbar.jsx', '    Portfolio.jsx',
+    '  app/', '    page.jsx', '    layout.jsx', '  styles/', '    globals.css',
+  ];
+
   return (
     <div
       className="bg-surface-card rounded-lg border border-hairline overflow-hidden"
@@ -73,7 +99,7 @@ function IDEMockup() {
         <div className="hidden lg:block w-[200px] bg-canvas-soft border-r border-hairline-soft p-base">
           <p className="text-caption-uppercase text-muted mb-sm">Explorer</p>
           <div className="flex flex-col gap-xxs">
-            {['src/', '  components/', '    Hero.jsx', '    Navbar.jsx', '    Portfolio.jsx', '  app/', '    page.jsx', '    layout.jsx', '  styles/', '    globals.css'].map((file, i) => (
+            {explorerFiles.map((file, i) => (
               <span
                 key={i}
                 className={`text-code ${file.includes('Hero') ? 'text-primary' : 'text-body'} ${file.startsWith('  ') ? 'pl-sm' : ''}`}
@@ -87,20 +113,7 @@ function IDEMockup() {
         {/* Main Editor */}
         <div className="flex-1 bg-canvas-soft p-base min-h-[280px]">
           <div className="flex flex-col gap-[2px]">
-            {[
-              { num: '1', code: 'export default function Hero() {', color: 'text-ink' },
-              { num: '2', code: '  return (', color: 'text-body' },
-              { num: '3', code: '    <section className="hero">', color: 'text-body' },
-              { num: '4', code: '      <h1>', color: 'text-body' },
-              { num: '5', code: '        We build websites that', color: 'text-primary' },
-              { num: '6', code: '        convert visitors into', color: 'text-primary' },
-              { num: '7', code: '        customers', color: 'text-primary' },
-              { num: '8', code: '      </h1>', color: 'text-body' },
-              { num: '9', code: '      <Button label="Start" />', color: 'text-body' },
-              { num: '10', code: '    </section>', color: 'text-body' },
-              { num: '11', code: '  );', color: 'text-body' },
-              { num: '12', code: '}', color: 'text-ink' },
-            ].map((line) => (
+            {codeLines.map((line) => (
               <div key={line.num} className="flex items-start gap-base">
                 <span className="text-code text-muted-soft w-[28px] text-right select-none flex-shrink-0">
                   {line.num}
