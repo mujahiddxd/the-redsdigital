@@ -9,9 +9,9 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
+  { label: 'Work', href: '#work' },
   { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -35,9 +35,7 @@ export default function Navbar() {
   return (
     <nav
       id="main-nav"
-      className={`sticky top-0 z-50 bg-canvas border-b border-hairline transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-sm' : ''
-      }`}
+      className={`sticky top-0 z-50 bg-canvas border-b border-hairline transition-all duration-300 ${scrolled ? 'backdrop-blur-sm' : ''}`}
       style={{ height: '64px' }}
     >
       <div className="max-w-[1200px] mx-auto px-lg h-full flex items-center justify-between">
