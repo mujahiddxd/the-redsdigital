@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -10,9 +11,9 @@ interface ServiceSlide {
   title: string;
   description: string;
   icon: React.ReactNode;
-  image?: string;
+  image: string;
   accentColor: string;
-  glowBg: string;
+  accentRgb: string; // For glow effects
 }
 
 const SERVICES: ServiceSlide[] = [
@@ -30,7 +31,7 @@ const SERVICES: ServiceSlide[] = [
     ),
     image: '/services-web-dev.jpg',
     accentColor: 'var(--color-primary)',
-    glowBg: 'radial-gradient(circle at center, rgba(245,78,0,0.12) 0%, transparent 70%)',
+    accentRgb: '245,78,0',
   },
   {
     number: '02',
@@ -46,7 +47,7 @@ const SERVICES: ServiceSlide[] = [
     ),
     image: '/services-ui-ux.jpg',
     accentColor: 'var(--color-timeline-edit)',
-    glowBg: 'radial-gradient(circle at center, rgba(192,168,221,0.12) 0%, transparent 70%)',
+    accentRgb: '192,168,221',
   },
   {
     number: '03',
@@ -58,8 +59,9 @@ const SERVICES: ServiceSlide[] = [
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
+    image: '/services-seo.jpg',
     accentColor: 'var(--color-timeline-grep)',
-    glowBg: 'radial-gradient(circle at center, rgba(159,201,162,0.12) 0%, transparent 70%)',
+    accentRgb: '159,201,162',
   },
   {
     number: '04',
@@ -78,8 +80,9 @@ const SERVICES: ServiceSlide[] = [
         <line x1="17" y1="17" x2="22" y2="17" />
       </svg>
     ),
+    image: '/services-motion.jpg',
     accentColor: 'var(--color-timeline-read)',
-    glowBg: 'radial-gradient(circle at center, rgba(159,187,224,0.12) 0%, transparent 70%)',
+    accentRgb: '159,187,224',
   },
   {
     number: '05',
@@ -92,16 +95,15 @@ const SERVICES: ServiceSlide[] = [
         <line x1="12" y1="18" x2="12.01" y2="18" />
       </svg>
     ),
+    image: '/services-mobile.jpg',
     accentColor: 'var(--color-timeline-thinking)',
-    glowBg: 'radial-gradient(circle at center, rgba(223,168,143,0.12) 0%, transparent 70%)',
+    accentRgb: '223,168,143',
   },
 ];
 
 export default function ServicesPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [dynamicBg, setDynamicBg] = useState(SERVICES[0].glowBg);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [slideWidth, setSlideWidth] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -109,6 +111,11 @@ export default function ServicesPage() {
   const currentTranslate = useRef(0);
   const prevTranslate = useRef(0);
   const animationRef = useRef<number>(0);
+
+  /* ── Scroll-based navigation (trackpad / mousewheel) ── */
+  const scrollAccumulator = useRef(0);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isScrollLocked = useRef(false);
 
   /* ── Responsive check ── */
   useEffect(() => {
@@ -128,7 +135,6 @@ export default function ServicesPage() {
       const containerWidth = containerRef.current.getBoundingClientRect().width;
       const activeSlide = slides[index];
       const activeWidth = activeSlide.getBoundingClientRect().width;
-      setSlideWidth(activeWidth);
 
       // Calculate offset: sum of all slide widths before active, then offset to center
       let offsetLeft = 0;
@@ -152,15 +158,12 @@ export default function ServicesPage() {
   const updateCarousel = useCallback(
     (index: number) => {
       setCurrentIndex(index);
-      setDynamicBg(SERVICES[index].glowBg);
-      // Use requestAnimationFrame to ensure DOM has updated before measuring
       requestAnimationFrame(() => measureAndCenter(index));
     },
     [measureAndCenter]
   );
 
   useEffect(() => {
-    // Delay initial measurement to ensure layout is settled
     const timer = setTimeout(() => updateCarousel(0), 50);
     const handleResize = () => measureAndCenter(currentIndex);
     window.addEventListener('resize', handleResize);
@@ -170,6 +173,63 @@ export default function ServicesPage() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /* ── Wheel / Trackpad scroll handler ── */
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+
+      // ONLY respond to horizontal scroll — ignore vertical completely
+      // This ensures normal page scrolling (up/down) is not intercepted
+      if (absX <= absY || absX < 5) return;
+
+      const delta = e.deltaX;
+
+      e.preventDefault();
+
+      if (isScrollLocked.current) return;
+
+      scrollAccumulator.current += delta;
+
+      // Clear previous timeout
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+
+      // Threshold to trigger navigation — tuned for trackpad smoothness
+      const threshold = 50;
+
+      if (Math.abs(scrollAccumulator.current) >= threshold) {
+        isScrollLocked.current = true;
+
+        const direction = scrollAccumulator.current > 0 ? 1 : -1;
+        const newIndex = Math.max(0, Math.min(SERVICES.length - 1, currentIndex + direction));
+
+        if (newIndex !== currentIndex) {
+          updateCarousel(newIndex);
+        }
+
+        scrollAccumulator.current = 0;
+
+        // Lock for a short duration to prevent rapid-fire navigation
+        setTimeout(() => {
+          isScrollLocked.current = false;
+        }, 600);
+      }
+
+      // Reset accumulator if user stops scrolling
+      scrollTimeout.current = setTimeout(() => {
+        scrollAccumulator.current = 0;
+      }, 150);
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheel);
+  }, [currentIndex, updateCarousel]);
 
   /* ── Navigation ── */
   const goTo = (index: number) => {
@@ -204,12 +264,9 @@ export default function ServicesPage() {
     const movedBy = currentTranslate.current - prevTranslate.current;
     let newIndex = currentIndex;
 
-    // Swipe left (drag left = negative) → next slide
     if (movedBy < -50 && currentIndex < SERVICES.length - 1) {
       newIndex = currentIndex + 1;
-    }
-    // Swipe right (drag right = positive) → prev slide
-    else if (movedBy > 50 && currentIndex > 0) {
+    } else if (movedBy > 50 && currentIndex > 0) {
       newIndex = currentIndex - 1;
     }
 
@@ -225,14 +282,57 @@ export default function ServicesPage() {
     }
   };
 
+  /* ── Keyboard navigation ── */
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        goTo(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        goTo(currentIndex + 1);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
+
+  const activeService = SERVICES[currentIndex];
+
   return (
     <>
       <Navbar />
       <main className="flex-1 relative overflow-x-hidden">
-        {/* Dynamic ambient glow behind content */}
+        {/* ── Dynamic Background Layer ── */}
+        {/* Blurred image backdrop */}
+        {SERVICES.map((service, i) => (
+          <div
+            key={`bg-img-${service.number}`}
+            className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+            style={{
+              opacity: i === currentIndex ? 0.35 : 0,
+              backgroundImage: `url('${service.image}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'blur(80px) saturate(1.8)',
+              transform: 'scale(1.3)',
+            }}
+          />
+        ))}
+
+        {/* Accent-colored radial glow */}
         <div
           className="fixed inset-0 pointer-events-none transition-all duration-700 z-0"
-          style={{ background: dynamicBg }}
+          style={{
+            background: `radial-gradient(ellipse 100% 80% at 50% 50%, rgba(${activeService.accentRgb},0.35) 0%, rgba(${activeService.accentRgb},0.15) 45%, transparent 80%)`,
+          }}
+        />
+
+        {/* Soft vignette to keep edges grounded */}
+        <div
+          className="fixed inset-0 pointer-events-none z-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 50%, var(--color-canvas) 95%)',
+          }}
         />
 
         {/* ── Header Section ── */}
@@ -294,53 +394,81 @@ export default function ServicesPage() {
                     opacity: isActive ? 1 : 0.4,
                     transform: isActive ? 'scale(1)' : 'scale(0.92)',
                   }}
+                  onClick={() => goTo(index)}
                 >
                   {/* Bento Card */}
                   <div
-                    className="relative w-full h-[420px] md:h-[450px] bg-surface-card border border-hairline rounded-lg overflow-hidden group flex flex-col justify-end p-lg md:p-xl transition-all duration-400 hover:border-primary/30"
+                    className="relative w-full h-[420px] md:h-[480px] border border-hairline rounded-lg overflow-hidden group flex flex-col transition-all duration-400 hover:border-primary/30"
                     style={{
-                      boxShadow: isActive
-                        ? `0 0 60px ${service.accentColor}15`
-                        : 'none',
+                      background: 'var(--color-surface-card)',
                     }}
                   >
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/50 to-transparent z-10" />
-
-                    {/* Curtain-reveal background image */}
-                    {service.image && (
-                      <div
-                        className="absolute inset-0 bg-cover bg-center z-0 opacity-0 group-hover:opacity-40 transition-opacity duration-600"
-                        style={{ backgroundImage: `url('${service.image}')` }}
+                    {/* ── Card Image Area (top ~55%) ── */}
+                    <div className="relative w-full h-[55%] overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        priority={index === 0}
                       />
-                    )}
+                      {/* Gradient fade from image to card content */}
+                      <div
+                        className="absolute inset-0 z-10"
+                        style={{
+                          background: `linear-gradient(to bottom, transparent 40%, var(--color-surface-card) 100%)`,
+                        }}
+                      />
+                      {/* Accent color tint on hover */}
+                      <div
+                        className="absolute inset-0 z-10 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                        style={{
+                          background: `linear-gradient(135deg, rgba(${service.accentRgb},0.3) 0%, transparent 60%)`,
+                        }}
+                      />
+                      {/* Number badge (top-left, overlaying image) */}
+                      <span
+                        className="absolute top-[16px] left-[16px] z-20 inline-flex items-center px-base py-xs rounded-pill text-caption-uppercase border border-white/20 backdrop-blur-md"
+                        style={{
+                          color: '#fff',
+                          backgroundColor: `rgba(${service.accentRgb},0.4)`,
+                        }}
+                      >
+                        {service.number}
+                      </span>
+                    </div>
 
-                    {/* Content */}
-                    <div className="relative z-20 flex flex-col h-full">
-                      {/* Top row: Number badge + Icon */}
-                      <div className="flex justify-between items-start">
-                        <span
-                          className="inline-flex items-center px-base py-xs rounded-pill text-caption-uppercase border border-hairline bg-surface-card/50 backdrop-blur-md"
-                          style={{ color: service.accentColor }}
-                        >
-                          {service.number}
-                        </span>
-                        <span
-                          className="opacity-30 group-hover:opacity-80 transition-opacity duration-300"
-                          style={{ color: service.accentColor }}
-                        >
-                          {service.icon}
-                        </span>
-                      </div>
-
-                      {/* Bottom: Title + Description */}
-                      <div className="mt-auto">
-                        <h2 className="text-display-sm text-ink mb-xs">
-                          {service.title}
-                        </h2>
-                        <p className="text-body-md text-body md:w-2/3">
+                    {/* ── Card Content Area (bottom ~45%) ── */}
+                    <div className="relative z-20 flex flex-col flex-1 px-lg pb-lg pt-sm justify-between">
+                      <div>
+                        <div className="flex items-center gap-sm mb-xs">
+                          <span
+                            className="opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ color: service.accentColor }}
+                          >
+                            {service.icon}
+                          </span>
+                          <h2 className="text-display-sm text-ink">
+                            {service.title}
+                          </h2>
+                        </div>
+                        <p className="text-body-md text-body">
                           {service.description}
                         </p>
+                      </div>
+
+                      {/* Subtle accent line at bottom */}
+                      <div
+                        className="mt-auto pt-base"
+                      >
+                        <div
+                          className="h-[2px] rounded-pill transition-all duration-500"
+                          style={{
+                            width: isActive ? '60px' : '30px',
+                            backgroundColor: isActive ? service.accentColor : 'var(--color-hairline)',
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -379,7 +507,7 @@ export default function ServicesPage() {
 
           {/* Dot indicators */}
           <div className="flex justify-center gap-xs mt-lg">
-            {SERVICES.map((_, i) => (
+            {SERVICES.map((s, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
@@ -393,13 +521,18 @@ export default function ServicesPage() {
                     height: '8px',
                     backgroundColor:
                       i === currentIndex
-                        ? 'var(--color-primary)'
+                        ? SERVICES[i].accentColor
                         : 'var(--color-hairline)',
                   }}
                 />
               </button>
             ))}
           </div>
+
+          {/* Scroll hint */}
+          <p className="text-center text-caption text-muted mt-lg opacity-60">
+            ← Scroll or drag to explore →
+          </p>
         </section>
 
         {/* ── CTA Band ── */}
