@@ -49,7 +49,6 @@ The visual style is inspired by modern developer-focused editorial brands:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Yami066/NOTNAMED.git
-   cd testimonial
    ```
 
 2. **Install all dependencies:**
