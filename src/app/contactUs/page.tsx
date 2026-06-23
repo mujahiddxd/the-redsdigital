@@ -211,7 +211,7 @@ export default function ContactUsPage() {
                     </div>
                   </div>
 
-                  {/* Budget */}
+                  {/* Budget
                   <div className="relative">
                     <label
                       htmlFor="contact-budget"
@@ -242,8 +242,8 @@ export default function ContactUsPage() {
                         <polyline points="6 9 12 15 18 9" />
                       </svg>
                     </div>
-                  </div>
-                </div>
+                  </div> */}
+                </div> 
 
                 {/* Row 3: Message */}
                 <div className="relative">
@@ -346,7 +346,7 @@ export default function ContactUsPage() {
               </div>
 
               {/* Global Locations */}
-              <div>
+              {/* <div>
                 <h3 className="text-caption-uppercase text-primary mb-lg tracking-[0.2em]">
                   Global Nodes
                 </h3>
@@ -366,7 +366,7 @@ export default function ContactUsPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Social Network */}
               <div>

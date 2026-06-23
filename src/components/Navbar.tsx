@@ -9,10 +9,10 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'Work', href: '#work' },
+  { label: 'Work', href: '/works' },
   { label: 'Services', href: '/services' },
   { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/contactUs' },
 ];
 
 export default function Navbar() {
