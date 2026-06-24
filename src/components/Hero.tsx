@@ -1,3 +1,7 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
 interface CodeLine {
   num: string;
   code: string;
@@ -8,14 +12,19 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="bg-canvas py-section"
+      className="relative z-10 pt-[120px] pb-[60px] max-w-[1200px] mx-auto px-lg"
     >
-      <div className="max-w-[1200px] mx-auto px-lg">
+      <div className="w-full">
         {/* Hero Content */}
         <div className="text-center max-w-[800px] mx-auto mb-xxl">
-          <p className="text-caption-uppercase text-muted mb-base">
-            Digital Agency
-          </p>
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-sm mb-lg">
+            <div className="w-10 h-[1px] bg-primary" />
+            <span className="text-caption-uppercase text-primary tracking-[0.25em]">
+              Digital Agency
+            </span>
+            <div className="w-10 h-[1px] bg-primary" />
+          </div>
 
           <h1 className="text-display-mega text-ink mb-lg">
             We build websites that convert visitors into customers
@@ -78,6 +87,19 @@ function IDEMockup() {
     '  app/', '    page.jsx', '    layout.jsx', '  styles/', '    globals.css',
   ];
 
+  const [visibleLines, setVisibleLines] = useState<number>(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setVisibleLines((prev) => {
+        if (prev < codeLines.length) return prev + 1;
+        clearInterval(timer);
+        return prev;
+      });
+    }, 250);
+    return () => clearInterval(timer);
+  }, [codeLines.length]);
+
   return (
     <div
       className="bg-surface-card rounded-lg border border-hairline overflow-hidden"
@@ -113,26 +135,37 @@ function IDEMockup() {
         {/* Main Editor */}
         <div className="flex-1 bg-canvas-soft p-base min-h-[280px]">
           <div className="flex flex-col gap-[2px]">
-            {codeLines.map((line) => (
-              <div key={line.num} className="flex items-start gap-base">
+            {codeLines.map((line, idx) => (
+              <div 
+                key={line.num} 
+                className="flex items-start gap-base transition-opacity duration-200"
+                style={{ opacity: idx < visibleLines ? 1 : 0 }}
+              >
                 <span className="text-code text-muted-soft w-[28px] text-right select-none flex-shrink-0">
                   {line.num}
                 </span>
                 <span className={`text-code ${line.color}`}>{line.code}</span>
               </div>
             ))}
+            {/* Blinking Cursor */}
+            {visibleLines < codeLines.length && (
+              <div className="flex items-start gap-base">
+                <span className="text-code text-muted-soft w-[28px] text-right select-none flex-shrink-0">{visibleLines + 1}</span>
+                <span className="w-[8px] h-[16px] bg-primary animate-pulse ml-xs mt-[2px]"></span>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Preview Pane */}
         <div className="hidden lg:flex w-[280px] bg-canvas-soft border-l border-hairline-soft p-base flex-col">
           <p className="text-caption-uppercase text-muted mb-sm">Preview</p>
-          <div className="flex-1 rounded-md bg-surface-card border border-hairline p-base flex flex-col items-center justify-center gap-sm">
-            <div className="w-full h-[8px] bg-surface-strong rounded-pill"></div>
-            <div className="w-[80%] h-[8px] bg-surface-strong rounded-pill"></div>
-            <div className="w-[60%] h-[6px] bg-primary rounded-pill opacity-60 mt-xs"></div>
-            <div className="w-full h-[60px] bg-surface-strong rounded-md mt-sm opacity-40"></div>
-            <div className="flex gap-xs mt-xs">
+          <div className="flex-1 rounded-md bg-surface-card border border-hairline p-base flex flex-col items-center justify-center gap-sm relative overflow-hidden">
+            <div className={`w-full h-[8px] bg-surface-strong rounded-pill transition-all duration-500 ${visibleLines > 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}></div>
+            <div className={`w-[80%] h-[8px] bg-surface-strong rounded-pill transition-all duration-500 delay-100 ${visibleLines > 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}></div>
+            <div className={`w-[60%] h-[6px] bg-primary rounded-pill mt-xs transition-all duration-500 delay-200 ${visibleLines > 4 ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-4'}`}></div>
+            <div className={`w-full h-[60px] bg-surface-strong rounded-md mt-sm transition-all duration-500 ${visibleLines > 5 ? 'opacity-40 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}></div>
+            <div className={`flex gap-xs mt-xs transition-all duration-500 ${visibleLines > 8 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <div className="w-[50px] h-[6px] bg-primary rounded-pill opacity-50"></div>
               <div className="w-[50px] h-[6px] bg-surface-strong rounded-pill"></div>
             </div>

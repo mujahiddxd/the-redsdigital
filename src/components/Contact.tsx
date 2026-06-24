@@ -1,21 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface ContactFormData {
   name: string;
   email: string;
+  service: string;
   message: string;
 }
+
+const SERVICE_OPTIONS = [
+  'Select a service',
+  'Web Development',
+  'UI/UX Design',
+  'SEO Strategy',
+  'Motion & Video',
+  'Mobile App Development',
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
+    service: '',
     message: '',
   });
+  const [submitted, setSubmitted] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -25,153 +41,253 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
     <section
       id="contact"
-      className="bg-canvas py-section"
+      className="relative z-10 max-w-[1200px] mx-auto px-lg py-section"
     >
-      <div className="max-w-[1200px] mx-auto px-lg">
-        {/* Section Header */}
-        <div className="text-center mb-xxl">
-          <p className="text-caption-uppercase text-muted mb-sm">
+      {/* Section Header */}
+      <div className="mb-xxl text-center">
+        <div className="flex items-center justify-center gap-sm mb-lg">
+          <div className="w-10 h-[1px] bg-primary" />
+          <span className="text-caption-uppercase text-primary tracking-[0.25em]">
             Get In Touch
-          </p>
-          <h2 className="text-display-lg text-ink mb-base">
-            Let&apos;s build something great
-          </h2>
-          <p className="text-body-md text-body max-w-[520px] mx-auto">
-            Tell us about your project. We&apos;ll get back to you within 24 hours with a tailored proposal.
-          </p>
+          </span>
+          <div className="w-10 h-[1px] bg-primary" />
         </div>
+        <h2 className="text-display-lg text-ink mb-base">
+          Let&apos;s build something great
+        </h2>
+        <p className="text-body-md text-body max-w-[520px] mx-auto">
+          Tell us about your project. We&apos;ll get back to you within 24 hours with a tailored proposal.
+        </p>
+      </div>
 
-        {/* Contact Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-xl max-w-[960px] mx-auto">
-          {/* Form — 3 columns */}
-          <div className="lg:col-span-3">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-surface-card rounded-lg border border-hairline p-xl flex flex-col gap-md"
-              id="contact-form"
-            >
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+        {/* ── Contact Form (8 cols) ── */}
+        <div className="lg:col-span-8">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="bg-surface-card border border-hairline rounded-lg p-xl md:p-xxl flex flex-col gap-xl backdrop-blur-sm"
+            style={{ backdropFilter: 'blur(12px)' }}
+            id="contact-form"
+          >
+            {/* Row 1: Name + Email */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
               {/* Name */}
-              <div className="flex flex-col gap-xs">
-                <label htmlFor="contact-name" className="text-title-sm text-ink">
-                  Name
-                </label>
+              <div className="relative">
                 <input
                   type="text"
                   id="contact-name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Your full name"
+                  onFocus={() => setFocusedField('name')}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder=" "
                   required
-                  className="bg-canvas text-ink border border-hairline rounded-md px-base py-sm text-body-md transition-colors duration-200 focus:outline-none focus:border-primary placeholder:text-muted-soft"
-                  style={{ height: '44px' }}
+                  className="peer w-full bg-transparent border-0 border-b border-hairline-strong py-base text-ink transition-colors duration-300 focus:outline-none focus:border-primary text-body-md"
+                  style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderRadius: 0 }}
+                />
+                <label
+                  htmlFor="contact-name"
+                  className="absolute left-0 top-base text-caption-uppercase text-muted pointer-events-none transition-all duration-300 origin-left peer-focus:-translate-y-6 peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-[0.85] peer-[:not(:placeholder-shown)]:text-primary"
+                >
+                  Full Name
+                </label>
+                {/* Focus underline animation */}
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ease-out"
+                  style={{ width: focusedField === 'name' ? '100%' : '0%' }}
                 />
               </div>
 
               {/* Email */}
-              <div className="flex flex-col gap-xs">
-                <label htmlFor="contact-email" className="text-title-sm text-ink">
-                  Email
-                </label>
+              <div className="relative">
                 <input
                   type="email"
                   id="contact-email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="you@company.com"
+                  onFocus={() => setFocusedField('email')}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder=" "
                   required
-                  className="bg-canvas text-ink border border-hairline rounded-md px-base py-sm text-body-md transition-colors duration-200 focus:outline-none focus:border-primary placeholder:text-muted-soft"
-                  style={{ height: '44px' }}
+                  className="peer w-full bg-transparent border-0 border-b border-hairline-strong py-base text-ink transition-colors duration-300 focus:outline-none focus:border-primary text-body-md"
+                  style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderRadius: 0 }}
                 />
-              </div>
-
-              {/* Message */}
-              <div className="flex flex-col gap-xs">
-                <label htmlFor="contact-message" className="text-title-sm text-ink">
-                  Project Description
+                <label
+                  htmlFor="contact-email"
+                  className="absolute left-0 top-base text-caption-uppercase text-muted pointer-events-none transition-all duration-300 origin-left peer-focus:-translate-y-6 peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-[0.85] peer-[:not(:placeholder-shown)]:text-primary"
+                >
+                  Email Address
                 </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your project, timeline, and goals..."
-                  rows={5}
-                  required
-                  className="bg-canvas text-ink border border-hairline rounded-md px-base py-sm text-body-md transition-colors duration-200 focus:outline-none focus:border-primary resize-y placeholder:text-muted-soft"
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ease-out"
+                  style={{ width: focusedField === 'email' ? '100%' : '0%' }}
                 />
               </div>
+            </div>
 
-              {/* Submit */}
-              <button
-                type="submit"
-                className="text-button bg-primary text-on-primary px-[20px] py-[12px] rounded-md border-none cursor-pointer transition-colors duration-200 hover:bg-primary-active mt-xs"
-                style={{ height: '44px' }}
-                id="contact-submit"
+            {/* Row 2: Service */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
+              {/* Service */}
+              <div className="relative">
+                <label
+                  htmlFor="contact-service"
+                  className="text-caption-uppercase text-primary mb-xs block"
+                  style={{ fontSize: '9px', letterSpacing: '0.1em' }}
+                >
+                  Service Interest
+                </label>
+                <div className="relative">
+                  <select
+                    id="contact-service"
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-0 border-b border-hairline-strong py-base text-ink text-body-md appearance-none cursor-pointer focus:outline-none focus:border-primary transition-colors duration-300"
+                    style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderRadius: 0 }}
+                  >
+                    {SERVICE_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt === 'Select a service' ? '' : opt} style={{ background: 'var(--color-surface-card)', color: 'var(--color-ink)' }}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                  {/* Chevron icon */}
+                  <svg
+                    width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </div>
+              </div>
+            </div> 
+
+            {/* Row 3: Message */}
+            <div className="relative">
+              <textarea
+                id="contact-message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                onFocus={() => setFocusedField('message')}
+                onBlur={() => setFocusedField(null)}
+                placeholder=" "
+                rows={4}
+                required
+                className="peer w-full bg-transparent border-0 border-b border-hairline-strong py-base text-ink transition-colors duration-300 focus:outline-none focus:border-primary text-body-md resize-none"
+                style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderRadius: 0 }}
+              />
+              <label
+                htmlFor="contact-message"
+                className="absolute left-0 top-base text-caption-uppercase text-muted pointer-events-none transition-all duration-300 origin-left peer-focus:-translate-y-6 peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-[0.85] peer-[:not(:placeholder-shown)]:text-primary"
               >
-                Send Message
-              </button>
-            </form>
+                The Brief / Your Vision
+              </label>
+              <div
+                className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ease-out"
+                style={{ width: focusedField === 'message' ? '100%' : '0%' }}
+              />
+            </div>
+
+            {/* Submit Row */}
+            <div className="flex items-center justify-between mt-xs">
+              {submitted && (
+                <p className="text-body-sm text-primary flex items-center gap-xs animate-pulse">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                  Request transmitted successfully
+                </p>
+              )}
+              <div className={submitted ? '' : 'ml-auto'}>
+                <button
+                  type="submit"
+                  className="group text-button bg-primary text-on-primary px-[28px] py-[16px] rounded-md border-none cursor-pointer transition-all duration-300 hover:bg-primary-active inline-flex items-center gap-sm tracking-wider"
+                  style={{ height: '52px' }}
+                  id="contact-submit"
+                >
+                  <span>Transmit Request</span>
+                  <svg
+                    width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        {/* ── Sidebar (4 cols) ── */}
+        <div className="lg:col-span-4 flex flex-col gap-xl">
+          {/* Direct Channels */}
+          <div>
+            <h3 className="text-caption-uppercase text-primary mb-lg tracking-[0.2em]">
+              Direct Channels
+            </h3>
+            <div className="flex flex-col gap-sm">
+              {/* Email */}
+              <a
+                href="mailto:hello@yami.agency"
+                className="group flex items-center gap-base p-base border border-hairline rounded-md hover:border-primary/40 transition-all duration-300 no-underline"
+                id="contact-email-link"
+              >
+                <svg
+                  width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                  className="text-primary flex-shrink-0"
+                >
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
+                </svg>
+                <span className="text-body-sm text-body group-hover:text-ink transition-colors duration-200" style={{ fontFamily: 'var(--font-mono)' }}>
+                  hello@yami.agency
+                </span>
+              </a>
+
+              {/* Phone */}
+              <div className="flex items-center gap-base p-base border border-hairline rounded-md">
+                <svg
+                  width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                  className="text-primary flex-shrink-0"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span className="text-body-sm text-body" style={{ fontFamily: 'var(--font-mono)' }}>
+                  +1 (555) 123-4567
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Info Panel — 2 columns */}
-          <div className="lg:col-span-2 flex flex-col gap-lg">
-            {/* Response Time */}
-            <div className="bg-surface-card rounded-lg border border-hairline p-lg">
-              <div className="flex items-center gap-sm mb-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                <h3 className="text-title-md text-ink">Quick Response</h3>
-              </div>
-              <p className="text-body-sm text-body">
-                We respond to every inquiry within 24 hours. Most projects kick off within a week.
-              </p>
-            </div>
-
-            {/* Process */}
-            <div className="bg-surface-card rounded-lg border border-hairline p-lg">
-              <div className="flex items-center gap-sm mb-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-                <h3 className="text-title-md text-ink">Our Process</h3>
-              </div>
-              <ul className="text-body-sm text-body flex flex-col gap-xs list-none p-0 m-0">
-                <li className="flex items-start gap-xs">
-                  <span className="text-muted-soft mt-[2px]">01</span>
-                  <span>Discovery call & project brief</span>
-                </li>
-                <li className="flex items-start gap-xs">
-                  <span className="text-muted-soft mt-[2px]">02</span>
-                  <span>Design mockups & feedback</span>
-                </li>
-                <li className="flex items-start gap-xs">
-                  <span className="text-muted-soft mt-[2px]">03</span>
-                  <span>Development & iteration</span>
-                </li>
-                <li className="flex items-start gap-xs">
-                  <span className="text-muted-soft mt-[2px]">04</span>
-                  <span>Launch & ongoing support</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact Info */}
-            <div className="bg-surface-card rounded-lg border border-hairline p-lg">
-              <h3 className="text-title-md text-ink mb-sm">Reach Us Directly</h3>
-              <div className="flex flex-col gap-xs text-body-sm text-body">
-                <span>hello@yami.agency</span>
-                <span>+1 (555) 123-4567</span>
-              </div>
+          {/* Social Network */}
+          <div>
+            <h3 className="text-caption-uppercase text-primary mb-lg tracking-[0.2em]">
+              Network
+            </h3>
+            <div className="flex flex-wrap gap-base">
+              {['Instagram', 'LinkedIn', 'Behance', 'Dribbble'].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="text-caption-uppercase text-muted hover:text-primary transition-colors duration-300 no-underline"
+                  id={`contact-social-${social.toLowerCase()}`}
+                >
+                  {social}
+                </a>
+              ))}
             </div>
           </div>
         </div>

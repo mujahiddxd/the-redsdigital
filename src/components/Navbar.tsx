@@ -9,7 +9,7 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'Work', href: '/' },
+  { label: 'Work', href: '/works' },
   { label: 'Services', href: '/services' },
   { label: 'Studio', href: '/studio' },
   { label: 'Contact', href: '/contactUs' },
@@ -22,6 +22,7 @@ export default function Navbar() {
   const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll, { passive: true });

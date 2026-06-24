@@ -107,6 +107,7 @@ export default function ServicesPage() {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
+  const [isDraggingState, setIsDraggingState] = useState(false);
   const startPos = useRef(0);
   const currentTranslate = useRef(0);
   const prevTranslate = useRef(0);
@@ -246,6 +247,7 @@ export default function ServicesPage() {
 
   const dragStart = (e: React.MouseEvent | React.TouchEvent) => {
     isDragging.current = true;
+    setIsDraggingState(true);
     startPos.current = getPositionX(e);
     if (trackRef.current) trackRef.current.style.transition = 'none';
     animationRef.current = requestAnimationFrame(animateTrack);
@@ -259,6 +261,7 @@ export default function ServicesPage() {
 
   const dragEnd = () => {
     isDragging.current = false;
+    setIsDraggingState(false);
     cancelAnimationFrame(animationRef.current);
 
     const movedBy = currentTranslate.current - prevTranslate.current;
@@ -374,7 +377,7 @@ export default function ServicesPage() {
           <div
             ref={trackRef}
             className="flex will-change-transform select-none"
-            style={{ cursor: isDragging.current ? 'grabbing' : 'grab' }}
+            style={{ cursor: isDraggingState ? 'grabbing' : 'grab' }}
             onMouseDown={dragStart}
             onMouseMove={dragAction}
             onMouseUp={dragEnd}

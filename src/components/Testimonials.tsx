@@ -1,3 +1,5 @@
+import ScrollReveal from './ScrollReveal';
+
 interface Testimonial {
   quote: string;
   name: string;
@@ -8,40 +10,19 @@ interface Testimonial {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Yami completely transformed our online presence. Within three months of launch, our lead generation increased by 68%. Their attention to detail and understanding of user psychology is truly world-class.",
-    name: "Sarah Chen",
-    role: "VP of Marketing",
-    company: "NovaPay",
-    initials: "SC",
+    quote: "Yami took our vision for an AI-powered meeting platform and turned it into a reality. The automated minutes and smart task extraction they built are incredible. Our users love the structured idea boards.",
+    name: "Alex Mercer",
+    role: "Co-Founder",
+    company: "Ideora",
+    initials: "AM",
   },
   {
-    quote: "We interviewed eight agencies before choosing Yami. They were the only team that asked the right questions about our customers before showing us a single mockup. The result speaks for itself — our bounce rate dropped by 42%.",
-    name: "Marcus Rivera",
-    role: "Founder & CEO",
-    company: "Bloom Botanics",
-    initials: "MR",
-  },
-  {
-    quote: "The patient portal Yami built for us handles 15,000+ daily active users without breaking a sweat. Their engineering quality matched their design sensibility — rare combination in this industry.",
-    name: "Dr. Amira Patel",
-    role: "Chief Digital Officer",
-    company: "Meridian Health Systems",
-    initials: "AP",
-  },
-  {
-    quote: "Working with Yami felt like having an in-house team that actually cared about our brand. They delivered on time, under budget, and the final product exceeded every expectation we had going in.",
-    name: "James Thornton",
-    role: "Creative Director",
-    company: "Arclight Studios",
-    initials: "JT",
-  },
-  {
-    quote: "Our SaaS conversion funnel improved by 3.2x after Yami redesigned our marketing site and onboarding flow. They don't just build websites — they build growth engines.",
-    name: "Elena Volkov",
-    role: "Head of Product",
-    company: "Vertex Automation",
-    initials: "EV",
-  },
+    quote: "The e-commerce experience Yami crafted for us is so warm and inviting. The custom animations and storytelling layer truly capture the handmade essence of our crochet creations.",
+    name: "Clara & Hazel",
+    role: "Founders",
+    company: "Peak Blush",
+    initials: "CH",
+  }
 ];
 
 export default function Testimonials() {
@@ -60,21 +41,23 @@ export default function Testimonials() {
             Trusted by teams that ship
           </h2>
           <p className="text-body-md text-body max-w-[520px] mx-auto">
-            Don't take our word for it — hear from the founders, product leads, and marketing teams we've partnered with.
+            Don&apos;t take our word for it — hear from the founders, product leads, and marketing teams we&apos;ve partnered with.
           </p>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-lg" id="testimonials-grid">
           {TESTIMONIALS.map((testimonial, index) => (
-            <article
-              key={testimonial.name}
-              className={`bg-surface-card rounded-lg border border-hairline p-lg flex flex-col ${
-                index === 0 ? 'md:col-span-2' : ''
-              }`}
-              id={`testimonial-card-${index}`}
+            <ScrollReveal 
+              key={testimonial.name} 
+              delay={`${index * 150}ms`} 
+              className={index === 0 ? 'md:col-span-2' : ''}
             >
-              {/* Quote Mark */}
+              <article
+                className="bg-surface-card rounded-lg border border-hairline p-lg flex flex-col h-full"
+                id={`testimonial-card-${index}`}
+              >
+                {/* Quote Mark */}
               <span
                 className="text-primary text-[40px] leading-none mb-xs select-none opacity-60"
                 aria-hidden="true"
@@ -104,8 +87,9 @@ export default function Testimonials() {
                     {testimonial.role}, {testimonial.company}
                   </p>
                 </div>
-              </div>
-            </article>
+                </div>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

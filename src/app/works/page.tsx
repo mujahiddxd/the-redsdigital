@@ -71,6 +71,24 @@ const PROJECTS: Project[] = [
 /* ── Filter categories ── */
 const CATEGORIES = ['All', ...Array.from(new Set(PROJECTS.map((p) => p.category)))];
 
+/* ── Work Page Testimonials ── */
+const WORKS_TESTIMONIALS = [
+  {
+    quote: "Yami took our vision for an AI-powered meeting platform and turned it into a reality. The automated minutes and smart task extraction they built are incredible. Our users love the structured idea boards.",
+    name: "Alex Mercer",
+    role: "Co-Founder",
+    company: "Ideora",
+    initials: "AM",
+  },
+  {
+    quote: "The e-commerce experience Yami crafted for us is so warm and inviting. The custom animations and storytelling layer truly capture the handmade essence of our crochet creations.",
+    name: "Clara & Hazel",
+    role: "Founders",
+    company: "Peak Blush",
+    initials: "CH",
+  }
+];
+
 export default function WorksPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState('All');
@@ -279,6 +297,71 @@ export default function WorksPage() {
             </div>
           )}
         </section>
+
+        {/* ══════════════════════════════════════════
+            Section 2.5 — Client Reviews
+        ══════════════════════════════════════════ */}
+        <div className="relative z-10 border-t border-hairline pt-section pb-section bg-canvas">
+          <div className="max-w-[1200px] mx-auto px-lg">
+            {/* Section Header */}
+            <div className="text-center mb-xxl">
+              <p className="text-caption-uppercase text-muted mb-sm">
+                Client Reviews
+              </p>
+              <h2 className="text-display-lg text-ink mb-base">
+                What our clients say
+              </h2>
+              <p className="text-body-md text-body max-w-[520px] mx-auto">
+                Hear directly from the founders we&apos;ve partnered with.
+              </p>
+            </div>
+
+            {/* Testimonials Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-lg" id="works-testimonials-grid">
+              {WORKS_TESTIMONIALS.map((testimonial, index) => (
+                <article
+                  key={testimonial.name}
+                  className={`bg-surface-card rounded-lg border border-hairline p-lg flex flex-col ${
+                    index === 0 && WORKS_TESTIMONIALS.length === 1 ? 'md:col-span-2' : ''
+                  }`}
+                  id={`works-testimonial-card-${index}`}
+                >
+                  {/* Quote Mark */}
+                  <span
+                    className="text-primary text-[40px] leading-none mb-xs select-none opacity-60"
+                    aria-hidden="true"
+                  >
+                    &ldquo;
+                  </span>
+
+                  {/* Quote Text */}
+                  <blockquote className="text-body-md text-body mb-lg flex-1">
+                    {testimonial.quote}
+                  </blockquote>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-sm border-t border-hairline-soft pt-base">
+                    {/* Avatar */}
+                    <div className="w-[40px] h-[40px] rounded-full bg-surface-strong flex items-center justify-center flex-shrink-0">
+                      <span className="text-caption text-muted font-medium">
+                        {testimonial.initials}
+                      </span>
+                    </div>
+
+                    <div>
+                      <p className="text-title-sm text-ink">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-caption text-muted">
+                        {testimonial.role}, {testimonial.company}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* ══════════════════════════════════════════
             Section 3 — CTA Band
