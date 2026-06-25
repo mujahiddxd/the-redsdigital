@@ -31,7 +31,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-body-md text-body max-w-[560px] mx-auto mb-xl">
-            Yami is a premium digital agency crafting high-performance websites, 
+            Euphatics is a premium digital agency crafting high-performance websites, 
             modern interfaces, and scalable web applications that drive real business growth.
           </p>
 
@@ -112,7 +112,7 @@ function IDEMockup() {
           <span className="w-[12px] h-[12px] rounded-full bg-[var(--color-timeline-done)] opacity-70"></span>
           <span className="w-[12px] h-[12px] rounded-full bg-[var(--color-success)] opacity-70"></span>
         </div>
-        <span className="text-caption text-muted ml-sm">index.jsx — Yami Project</span>
+        <span className="text-caption text-muted ml-sm">index.jsx — Euphatics Project</span>
       </div>
 
       {/* Editor Panes */}

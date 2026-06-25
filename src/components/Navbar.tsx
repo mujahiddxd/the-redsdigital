@@ -42,7 +42,7 @@ export default function Navbar() {
       <div className="max-w-[1200px] mx-auto px-lg h-full flex items-center justify-between">
         {/* Wordmark */}
         <a href="#" className="text-ink text-display-sm no-underline tracking-tight" id="nav-wordmark">
-          Yami<span className="text-primary">.</span>
+          Euphatics<span className="text-primary">.</span>
         </a>
 
         {/* Desktop Menu */}

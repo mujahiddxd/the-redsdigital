@@ -18,12 +18,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yami — Digital Agency | Web Development & Design",
+  title: "Euphatics — Digital Agency | Web Development & Design",
   description:
-    "Yami is a premium digital agency specializing in high-conversion web development, modern UI/UX design, and full-stack engineering. We build websites that transform visitors into loyal customers.",
+    "Euphatics is a premium digital agency specializing in high-conversion web development, modern UI/UX design, and full-stack engineering. We build websites that transform visitors into loyal customers.",
   keywords: "digital agency, web development, UI/UX design, web design, frontend, full-stack",
   openGraph: {
-    title: "Yami — Digital Agency",
+    title: "Euphatics — Digital Agency",
     description: "We build websites that convert visitors into customers.",
     type: "website",
   },

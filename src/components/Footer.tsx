@@ -65,11 +65,11 @@ export default function Footer() {
         <div className="border-t border-hairline-soft pt-lg flex flex-col md:flex-row items-center justify-between gap-base">
           {/* Wordmark */}
           <a href="#" className="text-display-sm text-ink no-underline tracking-tight">
-            Yami<span className="text-primary">.</span>
+            Euphatics<span className="text-primary">.</span>
           </a>
 
           <p className="text-body-sm text-muted">
-            &copy; {new Date().getFullYear()} Yami Agency. All rights reserved.
+            &copy; {new Date().getFullYear()} Euphatics Agency. All rights reserved.
           </p>
 
           {/* Social Icons */}

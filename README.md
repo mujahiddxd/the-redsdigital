@@ -1,6 +1,6 @@
-# Yami — High-Conversion Digital Agency Website
+# Euphatics — High-Conversion Digital Agency Website
 
-A premium, modern, and highly interactive digital agency website called **Yami**, built to showcase professional web development services, showcase a curated portfolio, and establish solid trust with potential clients.
+A premium, modern, and highly interactive digital agency website called **Euphatics**, built to showcase professional web development services, showcase a curated portfolio, and establish solid trust with potential clients.
 
 This project uses **Next.js** (App Router), **Tailwind CSS v4** (with `@theme` CSS inline tokens), and **next-themes** for seamless Dark Mode integration (warm cream canvas in light mode and sleek charcoal canvas in dark mode).
 
@@ -48,7 +48,7 @@ The visual style is inspired by modern developer-focused editorial brands:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Yami066/NOTNAMED.git
+   git clone https://github.com/Euphatics/NOTNAMED.git
    ```
 
 2. **Install all dependencies:**

@@ -314,7 +314,7 @@ export default function ContactUsPage() {
                 <div className="flex flex-col gap-sm">
                   {/* Email */}
                   <a
-                    href="mailto:hello@yami.agency"
+                    href="mailto:hello@euphatics.agency"
                     className="group flex items-center gap-base p-base border border-hairline rounded-md hover:border-primary/40 transition-all duration-300 no-underline"
                     id="contact-email-link"
                   >
@@ -326,7 +326,7 @@ export default function ContactUsPage() {
                       <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
                     </svg>
                     <span className="text-body-sm text-body group-hover:text-ink transition-colors duration-200" style={{ fontFamily: 'var(--font-mono)' }}>
-                      hello@yami.agency
+                      hello@euphatics.agency
                     </span>
                   </a>
 
@@ -423,7 +423,7 @@ export default function ContactUsPage() {
             </h2>
             <div className="flex flex-col sm:flex-row gap-base">
               <a
-                href="mailto:hello@yami.agency"
+                href="mailto:hello@euphatics.agency"
                 className="text-button bg-ink text-canvas px-xl py-base rounded-md no-underline transition-all duration-500 hover:bg-primary hover:text-on-primary inline-flex items-center justify-center tracking-wider"
                 style={{ height: '52px' }}
                 id="contact-cta-call"
