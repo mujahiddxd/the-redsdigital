@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ══════════════════════════════════════════════════════════════
    EUPHATICS DESIGN SYSTEM — Light Mode (Warm Cream Canvas)
    Based on design.md Cursor-inspired specification

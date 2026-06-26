@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function DeviceShowcase() {
   return (
-    <div className="relative w-full max-w-[1200px] mx-auto mt-2xl h-[400px] sm:h-[500px] md:h-[650px] perspective-1000">
+    <div className="relative w-full max-w-[1000px] mx-auto mt-16 md:mt-32 [perspective:2000px] group/showcase h-[400px] sm:h-[500px] md:h-[650px]">
       
       {/* Floating Badges */}
       <div className="hidden md:flex flex-col absolute top-[5%] left-[-2%] z-20 bg-surface-card border border-hairline-strong shadow-2xl rounded-xl px-4 py-4 items-center justify-center gap-2 animate-float-slow transition-transform hover:scale-105 w-[170px] text-center">
@@ -56,8 +56,8 @@ export default function DeviceShowcase() {
       </div>
 
       {/* Left Mobile Phone Mockup */}
-      <div className="absolute bottom-[-5%] left-[2%] md:left-[8%] w-[32%] md:w-[22%] z-10 transform -rotate-[8deg] shadow-2xl transition-transform hover:-rotate-2 duration-500">
-        <div className="relative w-full aspect-[9/19.5] bg-surface rounded-[1.5rem] md:rounded-[2.5rem] border-[8px] md:border-[12px] border-[#111] overflow-hidden shadow-2xl ring-1 ring-white/10 flex flex-col">
+      <div className="absolute bottom-[-5%] left-[2%] md:left-[8%] w-[32%] md:w-[22%] z-10 shadow-2xl transition-all duration-700 ease-out hover:scale-[1.02] hover:z-30 [transform:rotateY(5deg)_rotateZ(2deg)] hover:[transform:rotateY(25deg)_rotateZ(5deg)_translateX(20px)_translateY(-10px)]">
+        <div className="relative w-full aspect-[9/19.5] bg-surface rounded-[1rem] md:rounded-[1.25rem] border-[2px] md:border-[3px] border-[#111] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/10 flex flex-col">
 
           
           <Image
@@ -70,8 +70,8 @@ export default function DeviceShowcase() {
       </div>
 
       {/* Right Mobile Phone Mockup */}
-      <div className="absolute bottom-0 right-[2%] md:right-[8%] w-[32%] md:w-[22%] z-10 transform rotate-[8deg] shadow-2xl transition-transform hover:rotate-2 duration-500">
-        <div className="relative w-full aspect-[9/19.5] bg-surface rounded-[1.5rem] md:rounded-[2.5rem] border-[8px] md:border-[12px] border-[#111] overflow-hidden shadow-2xl ring-1 ring-white/10 flex flex-col">
+      <div className="absolute bottom-0 right-[2%] md:right-[8%] w-[32%] md:w-[22%] z-10 shadow-2xl transition-all duration-700 ease-out hover:scale-[1.02] hover:z-30 [transform:rotateY(-5deg)_rotateZ(-2deg)] hover:[transform:rotateY(-25deg)_rotateZ(-5deg)_translateX(-20px)_translateY(-10px)]">
+        <div className="relative w-full aspect-[9/19.5] bg-surface rounded-[1rem] md:rounded-[1.25rem] border-[2px] md:border-[3px] border-[#111] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/10 flex flex-col">
 
           
           <Image
