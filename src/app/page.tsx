@@ -4,7 +4,7 @@ import Marquee from '@/components/Marquee';
 import Testimonials from '@/components/Testimonials';
 import ScrollReveal from '@/components/ScrollReveal';
 import Footer from '@/components/Footer';
-import IDEMockup from '@/components/IDEMockup';
+import DeviceShowcase from '@/components/DeviceShowcase';
 
 /* ── Project Data (matches Works page) ── */
 const PROJECTS = [
@@ -146,34 +146,32 @@ export default function Home() {
           id="hero"
           className="relative z-10 pt-[120px] pb-[60px] max-w-[1200px] mx-auto px-lg"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
-            {/* Left Column: Text Content */}
-            <div className="lg:col-span-6 text-left">
+          <div className="flex flex-col items-center text-center gap-xl">
+            {/* Text Content */}
+            <div className="max-w-[800px] flex flex-col items-center">
               {/* Eyebrow */}
-              <div className="flex items-center gap-sm mb-lg">
-                {/* <span className="text-caption-uppercase text-primary tracking-[0.25em]">
+              {/* <div className="flex items-center gap-sm mb-lg">
+                <div className="w-12 h-[1px] bg-primary" />
+                <span className="text-caption-uppercase text-primary tracking-[0.25em]">
                   Digital Agency
-                </span> */}
-                {/* <div className="w-12 h-[1px] bg-primary" /> */}
-              </div>
+                </span>
+                <div className="w-12 h-[1px] bg-primary" />
+              </div> */}
 
               {/* Headline */}
-              <h1 className="text-[48px] lg:text-[54px] xl:text-[58px] font-normal leading-[1.1] tracking-[-0.03em] text-ink mb-lg">
-                <span className="whitespace-nowrap">We build websites that</span>
-                <br />
-                <span className="whitespace-nowrap">convert visitors into</span>
-                <br />
-                <span className="text-primary italic">customers.</span>
+              <h1 className="text-[48px] lg:text-[64px] xl:text-[72px] font-bold leading-[1.1] tracking-[-0.03em] text-ink mb-lg">
+                We Build Websites That<br />
+                <span className="text-primary">Convert Visitors Into Customers.</span>
               </h1>
 
               {/* Subhead */}
-              <p className="text-body-md text-body max-w-[480px] mb-xl">
+              <p className="text-body-md text-body max-w-[560px] mx-auto mb-xl">
                 Euphatics is a premium digital agency crafting high-performance websites,
                 modern interfaces, and scalable web applications that drive real business growth.
               </p>
 
               {/* CTA Group */}
-              <div className="flex flex-wrap items-center gap-base">
+              <div className="flex flex-wrap items-center justify-center gap-base">
                 <a
                   href="/contactUs"
                   className="text-button bg-primary text-on-primary px-[20px] py-[12px] rounded-md no-underline transition-colors duration-200 hover:bg-primary-active inline-flex items-center"
@@ -193,21 +191,36 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Right Column: IDE Mockup */}
-            <div className="lg:col-span-6 mt-xl lg:mt-0 relative flex justify-end">
-              {/* Decorative background glow for the IDE */}
-              <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full scale-100 pointer-events-none" />
-              <div className="relative z-10 w-full max-w-[600px]" style={{ transform: 'scale(0.95)', transformOrigin: 'center right' }}>
-                <IDEMockup />
+            {/* Hero Graphic */}
+            <div className="w-full mt-xl relative">
+              <div className="absolute inset-0 bg-primary/5 blur-[100px] rounded-full scale-110 pointer-events-none" />
+              <div className="relative z-10 w-full flex justify-center">
+                <DeviceShowcase />
               </div>
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════
-            Section 2 — Tech Stack Marquee
+        {/* {/* ══════════════════════════════════════════
+            Section 2 — Trusted By
         ══════════════════════════════════════════ */}
-        <Marquee />
+        {/* <section className="relative z-10 max-w-[1200px] mx-auto px-lg py-xl border-t border-hairline mt-xl md:mt-2xl">
+          <div className="text-center mb-xl">
+            <h3 className="text-display-sm text-ink max-w-[700px] mx-auto leading-snug">
+              Trusted by businesses across Retail, Automotive, Banking, Manufacturing, and eCommerce.
+            </h3>
+          </div>
+          
+          {/* Logo Grid */}
+          {/* <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-md max-w-[900px] mx-auto opacity-70 hover:opacity-100 transition-opacity duration-500">
+             {['Wasan Toyota', 'Infinity Cars', 'Hub Sports', 'Odra', 'Twentyci', 'FiunEx', 'Unitherm', 'Ohm'].map((brand, i) => (
+                <div key={i} className="flex items-center justify-center py-6 px-4 bg-surface rounded-lg border border-hairline transition-all duration-300 hover:bg-surface-card hover:border-hairline-strong hover:shadow-md cursor-pointer grayscale hover:grayscale-0">
+                  <span className="text-body-sm font-semibold text-muted tracking-wide text-center">{brand}</span>
+                </div>
+             ))}
+          </div>
+        </section>  */}
+
 
         {/* ══════════════════════════════════════════
             Section 3 — Services Preview
