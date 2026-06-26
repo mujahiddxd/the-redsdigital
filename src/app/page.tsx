@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
-import Marquee from '@/components/Marquee';
+
 import Testimonials from '@/components/Testimonials';
 import ScrollReveal from '@/components/ScrollReveal';
 import Footer from '@/components/Footer';
