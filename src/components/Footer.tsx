@@ -28,6 +28,11 @@ const FOOTER_LINKS: Record<string, FooterLink[]> = {
     { label: 'GitHub', href: '#' },
     { label: 'Dribbble', href: '#' },
   ],
+  Contact: [
+    { label: 'WhatsApp', href: 'https://wa.me/918097077235' },
+    { label: 'Email Us', href: 'mailto:hello@euphatics.agency' },
+    { label: '+91 80970 77235', href: 'https://wa.me/918097077235' },
+  ],
 };
 
 export default function Footer() {
@@ -39,7 +44,7 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto px-lg relative z-10">
         
         {/* Footer Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-xl mb-[100px]">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-xl mb-[100px]">
           {Object.entries(FOOTER_LINKS).map(([category, links]) => (
             <div key={category}>
               <h4 className="text-caption-uppercase text-muted mb-md tracking-[0.1em]">
