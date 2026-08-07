@@ -22,6 +22,13 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Founders",
     company: "Peak Blush",
     initials: "CH",
+  },
+  {
+    quote: "Architect3D completely transformed how we visualize spaces. The intuitive 2D drawing paired with instant 3D rendering makes planning incredibly smooth. A game-changer for our workflow.",
+    name: "Aakaar Team",
+    role: "Product Team",
+    company: "Architect3D",
+    initials: "AT",
   }
 ];
 

@@ -64,6 +64,28 @@ const PROJECTS: Project[] = [
     liveUrl: 'https://peaks-blush.vercel.app/',
     accentRgb: '139,69,69',
   },
+  {
+    slug: 'architect3d',
+    title: 'Architect3D',
+    tagline: 'Interactive 2D/3D floorplan designer and viewer.',
+    description:
+      'A robust web application that lets users draw 2D floorplans and instantly visualize them in interactive 3D. Users can drag and drop furniture, adjust elevations, and even export the final 3D scene as a GLTF model.',
+    challenge:
+      'Building a performant, browser-based 3D modeling tool requires complex state management and seamless synchronization between a 2D canvas and a WebGL 3D context without dropping frames.',
+    solution:
+      'We leveraged optimized 3D libraries coupled with a streamlined DOM overlay to deliver a smooth, native-app-like experience directly in the browser. The system efficiently syncs updates from the 2D canvas into the WebGL renderer.',
+    results: [
+      'Sub-second 3D rendering',
+      'Seamless 2D to 3D sync',
+      'Extensive furniture inventory',
+      'GLTF model export',
+    ],
+    tags: ['Web3D', 'WebGL', 'UI/UX', 'JavaScript'],
+    category: 'SaaS Platform',
+    screenshot: '/aakaar.jpg',
+    liveUrl: 'https://aakaar-woad.vercel.app/',
+    accentRgb: '0,119,255',
+  },
 ];
 
 /* ── Filter categories ── */
