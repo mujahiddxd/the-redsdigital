@@ -64,29 +64,53 @@ const PROJECTS: Project[] = [
     liveUrl: 'https://peaks-blush.vercel.app/',
     accentRgb: '139,69,69',
   },
+
   {
-    slug: 'architect3d',
-    title: 'Architect3D',
-    tagline: 'Interactive 2D/3D floorplan designer and viewer.',
+    slug: 'aeteesbakehouse',
+    title: 'Aetee\'s Bakehouse',
+    tagline: 'Artisanal baked goods and pastries.',
     description:
-      'A robust web application that lets users draw 2D floorplans and instantly visualize them in interactive 3D. Users can drag and drop furniture, adjust elevations, and even export the final 3D scene as a GLTF model.',
+      'A beautiful and appetizing e-commerce and showcase website for an artisanal bakehouse, featuring an elegant design that highlights their delicious offerings.',
     challenge:
-      'Building a performant, browser-based 3D modeling tool requires complex state management and seamless synchronization between a 2D canvas and a WebGL 3D context without dropping frames.',
+      'The bakehouse needed a digital presence that matched the quality and aesthetics of their physical products, with a focus on visual appeal and easy navigation for customers.',
     solution:
-      'We leveraged optimized 3D libraries coupled with a streamlined DOM overlay to deliver a smooth, native-app-like experience directly in the browser. The system efficiently syncs updates from the 2D canvas into the WebGL renderer.',
+      'We designed a visually rich, mouth-watering website with a warm color palette, high-quality image galleries, and a smooth user experience that perfectly represents the brand.',
     results: [
-      'Sub-second 3D rendering',
-      'Seamless 2D to 3D sync',
-      'Extensive furniture inventory',
-      'GLTF model export',
+      'Elegant and appetizing design',
+      'Seamless user experience',
+      'High-quality image galleries',
+      'Increased online visibility',
     ],
-    tags: ['Web3D', 'WebGL', 'UI/UX', 'JavaScript'],
-    category: 'SaaS Platform',
-    screenshot: '/aakaar.jpg',
-    liveUrl: 'https://aakaar-woad.vercel.app/',
-    accentRgb: '0,119,255',
+    tags: ['Next.js', 'E-Commerce', 'Web Design'],
+    category: 'E-Commerce',
+    screenshot: '/aeteesbakehouse.png',
+    liveUrl: 'https://aeteesbakehouse.com/',
+    accentRgb: '210,105,30',
+  },
+  {
+    slug: 'chimanlals',
+    title: 'Chimanlals',
+    tagline: 'Premium paper products and stationery.',
+    description:
+      'A digital storefront for a heritage brand specializing in handcrafted paper products, stationery, and bespoke designs.',
+    challenge:
+      'The client needed a modern e-commerce platform that preserves their rich heritage while providing a seamless, fast, and user-friendly shopping experience for a global audience.',
+    solution:
+      'We developed a custom e-commerce solution that balances traditional aesthetics with modern performance, featuring an intuitive product catalog, streamlined checkout, and mobile-responsive design.',
+    results: [
+      'Preserved brand heritage digitally',
+      'Modern, performant e-commerce',
+      'Intuitive product catalog',
+      'Streamlined checkout process',
+    ],
+    tags: ['Next.js', 'E-Commerce', 'UI/UX'],
+    category: 'E-Commerce',
+    screenshot: '/chimanlals.png',
+    liveUrl: 'https://chimanlals-dep.vercel.app/',
+    accentRgb: '184,134,11',
   },
 ];
+
 
 /* ── Filter categories ── */
 const CATEGORIES = ['All', ...Array.from(new Set(PROJECTS.map((p) => p.category)))];

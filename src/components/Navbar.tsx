@@ -91,7 +91,7 @@ export default function Navbar() {
 
           {/* Primary CTA */}
           <a
-            href="#contact"
+            href="https://wa.me/918097077235"
             className="text-button bg-primary text-on-primary px-[18px] py-[10px] rounded-md no-underline transition-colors duration-200 hover:bg-primary-active inline-flex items-center"
             style={{ height: '40px' }}
             id="nav-cta"
@@ -166,7 +166,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="https://wa.me/918097077235"
               className="text-button bg-primary text-on-primary px-[18px] py-[10px] rounded-md no-underline transition-colors duration-200 hover:bg-primary-active text-center mt-xs"
               style={{ height: '40px' }}
               onClick={() => setMobileOpen(false)}

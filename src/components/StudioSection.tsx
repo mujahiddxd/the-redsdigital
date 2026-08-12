@@ -113,9 +113,9 @@ interface TeamMember {
 
 const TEAM: TeamMember[] = [
   {
-    name: 'Sabrae',
-    role: 'Founder & Lead Developer',
-    initials: 'S',
+    name: 'Mujahid',
+    role: 'Portfolio & Lead Developer',
+    initials: 'M',
     bio: 'Full-stack architect with a passion for crafting performant, beautiful digital experiences. Obsessed with clean code and pixel-perfect interfaces.',
   },
 ];
@@ -245,15 +245,14 @@ export default function StudioSection() {
           <div className="flex items-center gap-sm mb-lg">
             <div className="w-10 h-[1px] bg-primary" />
             <span className="text-caption-uppercase text-primary tracking-[0.25em]">
-              The Team
+              About Me
             </span>
           </div>
           <h3 className="text-display-lg text-ink mb-base max-w-[600px]">
-            Small team. Big ambitions.
+            Solo developer. Big ambitions.
           </h3>
           <p className="text-body-md text-body max-w-[500px]">
-            We believe in staying lean and focused. Every person on our team
-            is a craftsperson who cares deeply about quality.
+            I believe in staying focused and delivering excellence. As an independent developer, I am a craftsperson who cares deeply about quality.
           </p>
         </div>
 

@@ -47,20 +47,20 @@ export default function Home() {
 
               {/* Headline */}
               <h1 className="text-[48px] lg:text-[64px] xl:text-[72px] font-bold leading-[1.1] tracking-[-0.03em] text-ink mb-lg">
-                We Build Websites That<br />
-                <span className="text-primary">Convert Visitors Into Customers.</span>
+                Hi, I'm Mujahid,<br />
+                <span className="text-primary">Welcome To My Portfolio.</span>
               </h1>
 
               {/* Subhead */}
               <p className="text-body-md text-body max-w-[560px] mx-auto mb-xl">
-                Euphatics is a premium digital agency crafting high-performance websites,
-                modern interfaces, and scalable web applications that drive real business growth.
+                I am a passionate developer crafting high-performance websites,
+                modern interfaces, and scalable web applications that bring ideas to life.
               </p>
 
               {/* CTA Group */}
               <div className="flex flex-wrap items-center justify-center gap-base">
                 <a
-                  href="/contactUs"
+                  href="https://wa.me/918097077235"
                   className="text-button bg-primary text-on-primary px-[20px] py-[12px] rounded-md no-underline transition-colors duration-200 hover:bg-primary-active inline-flex items-center"
                   style={{ height: '44px' }}
                   id="hero-cta-primary"
@@ -68,12 +68,12 @@ export default function Home() {
                   Start a Project
                 </a>
                 <a
-                  href="/works"
+                  href="#works"
                   className="text-button bg-surface-card text-ink px-[20px] py-[12px] rounded-md no-underline border border-hairline-strong transition-colors duration-200 hover:bg-surface-strong inline-flex items-center"
                   style={{ height: '44px' }}
                   id="hero-cta-secondary"
                 >
-                  View Our Work
+                  View My Work
                 </a>
               </div>
             </div>

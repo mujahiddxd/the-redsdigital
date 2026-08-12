@@ -16,7 +16,6 @@ const SERVICE_OPTIONS = [
   'Web Development',
   'UI/UX Design',
   'SEO Strategy',
-  'Motion & Video',
   'Mobile App Development',
 ];
 
