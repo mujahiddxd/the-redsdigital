@@ -254,7 +254,7 @@ export default function ContactSection() {
               <div className="flex flex-col gap-sm">
                 {/* Email */}
                 <a
-                  href="mailto:hello@euphatics.agency"
+                  href="mailto:euphatics@gmail.com"
                   className="group flex items-center gap-base p-base border border-hairline rounded-md hover:border-primary/40 transition-all duration-300 no-underline"
                   id="contact-email-link"
                 >
@@ -266,7 +266,7 @@ export default function ContactSection() {
                     <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
                   </svg>
                   <span className="text-body-sm text-body group-hover:text-ink transition-colors duration-200" style={{ fontFamily: 'var(--font-mono)' }}>
-                    hello@euphatics.agency
+                    euphatics@gmail.com
                   </span>
                 </a>
 
@@ -284,7 +284,7 @@ export default function ContactSection() {
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                   <span className="text-body-sm text-body group-hover:text-ink transition-colors duration-200" style={{ fontFamily: 'var(--font-mono)' }}>
-                    +91 80970 77235 | +91 98701 90753
+                    +91 80970 77235
                   </span>
                 </a>
               </div>

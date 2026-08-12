@@ -30,7 +30,7 @@ const FOOTER_LINKS: Record<string, FooterLink[]> = {
   ],
   Contact: [
     { label: 'WhatsApp', href: 'https://wa.me/918097077235' },
-    { label: 'Email Us', href: 'mailto:hello@euphatics.agency' },
+    { label: 'Email Us', href: 'mailto:euphatics@gmail.com' },
     { label: '+91 80970 77235', href: 'https://wa.me/918097077235' },
   ],
 };
