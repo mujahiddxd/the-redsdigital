@@ -18,13 +18,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mujahid — Portfolio | Web Developer",
+  title: "Euphatics — Digital Agency | Web Development & Design",
   description:
-    "Hi, I'm Mujahid. I am a passionate developer crafting high-performance websites, modern interfaces, and scalable web applications that bring ideas to life.",
-  keywords: "portfolio, web developer, UI/UX design, web design, frontend, full-stack",
+    "Euphatics is a digital agency crafting high-performance websites, modern interfaces, and scalable web applications for ambitious businesses.",
+  keywords: "digital agency, web development, UI/UX design, web design, frontend, full-stack, software engineering",
   openGraph: {
-    title: "Mujahid — Portfolio",
-    description: "I build digital experiences that inspire and bring ideas to life.",
+    title: "Euphatics — Digital Agency",
+    description: "Digital experiences built for ambitious businesses.",
     type: "website",
   },
 };

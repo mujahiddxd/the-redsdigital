@@ -47,14 +47,13 @@ export default function Home() {
 
               {/* Headline */}
               <h1 className="text-[48px] lg:text-[64px] xl:text-[72px] font-bold leading-[1.1] tracking-[-0.03em] text-ink mb-lg">
-                Hi, I'm Mujahid,<br />
-                <span className="text-primary">Welcome To My Portfolio.</span>
+                Welcome to Euphatics,<br />
+                <span className="text-primary">Digital experiences built for ambitious businesses.</span>
               </h1>
 
               {/* Subhead */}
               <p className="text-body-md text-body max-w-[560px] mx-auto mb-xl">
-                I am a passionate developer crafting high-performance websites,
-                modern interfaces, and scalable web applications that bring ideas to life.
+                We craft high-performance websites, modern interfaces, and scalable web applications that drive real business growth.
               </p>
 
               {/* CTA Group */}
@@ -73,7 +72,7 @@ export default function Home() {
                   style={{ height: '44px' }}
                   id="hero-cta-secondary"
                 >
-                  View My Work
+                  View Our Work
                 </a>
               </div>
             </div>

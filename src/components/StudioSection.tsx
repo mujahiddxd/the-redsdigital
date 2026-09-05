@@ -103,20 +103,54 @@ const PROCESS_STEPS: ProcessStep[] = [
   },
 ];
 
-/* ── Team Members ── */
-interface TeamMember {
-  name: string;
-  role: string;
-  initials: string;
-  bio: string;
+/* ── Studio Pillars ── */
+interface StudioPillar {
+  title: string;
+  description: string;
+  tag: string;
+  icon: React.ReactNode;
 }
 
-const TEAM: TeamMember[] = [
+const PILLARS: StudioPillar[] = [
   {
-    name: 'Mujahid',
-    role: 'Portfolio & Lead Developer',
-    initials: 'M',
-    bio: 'Full-stack architect with a passion for crafting performant, beautiful digital experiences. Obsessed with clean code and pixel-perfect interfaces.',
+    tag: '01 / Rigor',
+    title: 'Engineering Rigor',
+    description:
+      'Zero bloated dependencies or shortcuts. We build fast, scalable, and secure web applications designed for long-term maintainability.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+        <line x1="14" y1="4" x2="10" y2="20" />
+      </svg>
+    ),
+  },
+  {
+    tag: '02 / Design',
+    title: 'User-Centric Craft',
+    description:
+      'Interfaces forged through research and taste. We combine crisp typography, smooth motion, and purposeful hierarchy to drive conversions.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5" />
+        <path d="M2 12l10 5 10-5" />
+      </svg>
+    ),
+  },
+  {
+    tag: '03 / Agility',
+    title: 'Direct Partnership',
+    description:
+      'No unnecessary layers, account managers, or bloated bureaucracy. You work directly with experienced practitioners who execute fast.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
   },
 ];
 
@@ -237,7 +271,7 @@ export default function StudioSection() {
       </div>
 
       {/* ══════════════════════════════════════════
-          Section 3 — Team
+          Section 3 — About Euphatics
       ══════════════════════════════════════════ */}
       <div className="relative z-10 max-w-[1200px] mx-auto px-lg pb-section mt-xl">
         {/* Section Header */}
@@ -245,77 +279,71 @@ export default function StudioSection() {
           <div className="flex items-center gap-sm mb-lg">
             <div className="w-10 h-[1px] bg-primary" />
             <span className="text-caption-uppercase text-primary tracking-[0.25em]">
-              About Me
+              About Euphatics
             </span>
           </div>
           <h3 className="text-display-lg text-ink mb-base max-w-[600px]">
-            Solo developer. Big ambitions.
+            Crafting digital excellence with focus and precision.
           </h3>
-          <p className="text-body-md text-body max-w-[500px]">
-            I believe in staying focused and delivering excellence. As an independent developer, I am a craftsperson who cares deeply about quality.
+          <p className="text-body-md text-body max-w-[540px]">
+            We believe in staying lean, agile, and relentlessly focused on quality. At Euphatics, we partner with ambitious brands to design and engineer scalable digital products that deliver real business impact.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="flex flex-wrap justify-center gap-xl" id="team-grid">
-          {TEAM.map((member) => (
+        {/* Pillars Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-lg" id="pillars-grid">
+          {PILLARS.map((pillar) => (
             <div
-              key={member.name}
-              className="group flex flex-col items-center text-center w-[280px]"
-              id={`team-${member.name.toLowerCase()}`}
+              key={pillar.title}
+              className="p-lg md:p-xl rounded-lg border border-hairline bg-surface-card transition-all duration-300 hover:border-primary/40 flex flex-col justify-between"
             >
-              {/* Avatar */}
-              <div className="w-[200px] h-[200px] rounded-full border border-hairline bg-surface-card flex items-center justify-center mb-lg relative overflow-hidden transition-all duration-500 group-hover:border-primary/50">
-                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <span className="text-[64px] text-muted group-hover:text-primary transition-colors duration-500 relative z-10 font-light">
-                  {member.initials}
-                </span>
+              <div>
+                <div className="flex items-center justify-between mb-lg">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                    {pillar.icon}
+                  </div>
+                  <span className="text-caption-uppercase text-muted font-mono text-xs tracking-wider">
+                    {pillar.tag}
+                  </span>
+                </div>
+                <h4 className="text-display-sm text-ink mb-sm">
+                  {pillar.title}
+                </h4>
+                <p className="text-body-sm text-body leading-relaxed">
+                  {pillar.description}
+                </p>
               </div>
-
-              {/* Info */}
-              <h4 className="text-display-sm text-ink mb-xs">
-                {member.name}
-              </h4>
-              <p className="text-caption-uppercase text-primary mb-base tracking-[0.1em]">
-                {member.role}
-              </p>
-              <p className="text-body-sm text-body">
-                {member.bio}
-              </p>
             </div>
           ))}
+        </div>
 
-          {/* "We're hiring / growing" placeholder card */}
-          <div
-            className="group flex flex-col items-center text-center w-[280px]"
-          >
-            <div className="w-[200px] h-[200px] rounded-full border border-dashed border-hairline-strong bg-transparent flex items-center justify-center mb-lg transition-all duration-500 group-hover:border-primary/50 group-hover:bg-surface-card/30">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-muted group-hover:text-primary transition-colors duration-500"
-              >
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
+        {/* Careers CTA */}
+        <div className="mt-xl p-lg md:p-xl rounded-lg border border-hairline bg-surface-card flex flex-col md:flex-row items-start md:items-center justify-between gap-lg">
+          <div className="max-w-[600px]">
+            <div className="flex items-center gap-xs mb-xs">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span className="text-caption-uppercase text-primary tracking-[0.15em] font-mono text-xs">
+                Careers at Euphatics
+              </span>
             </div>
-            <p className="text-display-sm text-ink mb-xs">Your name here?</p>
-            <p className="text-body-sm text-muted">
+            <h4 className="text-display-sm text-ink mb-xs">
               We&apos;re always looking for exceptional talent.
+            </h4>
+            <p className="text-body-sm text-body">
+              Engineers, designers, and digital strategists — if you care deeply about craft and performance, we&apos;d love to work with you.
             </p>
-            <a
-              href="#contact"
-              className="text-caption-uppercase text-primary mt-base no-underline hover:underline tracking-[0.1em]"
-            >
-              Get in Touch →
-            </a>
           </div>
+          <a
+            href="https://wa.me/918097077235"
+            className="text-button bg-primary text-on-primary px-[20px] py-[10px] rounded-md no-underline transition-colors duration-200 hover:bg-primary-active inline-flex items-center gap-xs flex-shrink-0"
+            style={{ height: '40px' }}
+          >
+            <span>Join Our Team</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>

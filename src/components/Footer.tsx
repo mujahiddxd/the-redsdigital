@@ -5,21 +5,21 @@ interface FooterLink {
 
 const FOOTER_LINKS: Record<string, FooterLink[]> = {
   Company: [
-    { label: 'About', href: '#' },
-    { label: 'Careers', href: '#' },
+    { label: 'About', href: '#studio' },
+    { label: 'Careers', href: '#studio' },
     { label: 'Blog', href: '#' },
     { label: 'Press', href: '#' },
   ],
   Services: [
-    { label: 'Web Development', href: '#' },
-    { label: 'UI/UX Design', href: '#' },
-    { label: 'E-Commerce', href: '#' },
-    { label: 'SaaS Platforms', href: '#' },
+    { label: 'Web Development', href: '#services' },
+    { label: 'UI/UX Design', href: '#services' },
+    { label: 'E-Commerce', href: '#services' },
+    { label: 'SaaS Platforms', href: '#services' },
   ],
   Resources: [
-    { label: 'Case Studies', href: '#portfolio' },
+    { label: 'Case Studies', href: '#works' },
     { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Process', href: '#' },
+    { label: 'Process', href: '#studio' },
     { label: 'FAQ', href: '#' },
   ],
   Connect: [
