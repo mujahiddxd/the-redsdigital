@@ -30,7 +30,7 @@ const FOOTER_LINKS: Record<string, FooterLink[]> = {
   ],
   Contact: [
     { label: 'WhatsApp', href: 'https://wa.me/918097077235' },
-    { label: 'Email Us', href: 'mailto:euphatics@gmail.com' },
+    { label: 'Email Us', href: 'mailto:theredsdigital@gmail.com' },
     { label: '+91 80970 77235', href: 'https://wa.me/918097077235' },
   ],
 };
@@ -69,7 +69,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-hairline-soft pt-lg flex flex-col md:flex-row items-center justify-between gap-base mb-[40px] md:mb-0">
           <p className="text-body-sm text-muted">
-            &copy; {new Date().getFullYear()} Euphatics Agency. All rights reserved.
+            &copy; {new Date().getFullYear()} The Reds Digital Agency. All rights reserved.
           </p>
 
           {/* Social Icons */}
@@ -98,8 +98,8 @@ export default function Footer() {
 
       {/* Massive Background Wordmark */}
       <div className="absolute bottom-[-10%] md:bottom-[-20%] left-0 right-0 w-full flex justify-center pointer-events-none select-none z-0 overflow-hidden">
-        <h1 className="text-[18vw] md:text-[22vw] leading-none font-bold text-surface-strong tracking-tighter whitespace-nowrap">
-          EUPHATICS
+        <h1 className="text-[14vw] md:text-[16vw] leading-none font-bold text-surface-strong tracking-tighter whitespace-nowrap">
+          REDS DIGITAL
         </h1>
       </div>
     </footer>

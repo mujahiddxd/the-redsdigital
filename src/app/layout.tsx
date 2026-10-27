@@ -18,12 +18,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Euphatics — Digital Agency | Web Development & Design",
+  title: "The Reds Digital — Digital Agency | Web Development & Design",
   description:
-    "Euphatics is a digital agency crafting high-performance websites, modern interfaces, and scalable web applications for ambitious businesses.",
+    "The Reds Digital is a digital agency crafting high-performance websites, modern interfaces, and scalable web applications for ambitious businesses.",
   keywords: "digital agency, web development, UI/UX design, web design, frontend, full-stack, software engineering",
   openGraph: {
-    title: "Euphatics — Digital Agency",
+    title: "The Reds Digital — Digital Agency",
     description: "Digital experiences built for ambitious businesses.",
     type: "website",
   },

@@ -253,7 +253,7 @@ export default function ContactSection() {
               <div className="flex flex-col gap-sm">
                 {/* Email */}
                 <a
-                  href="mailto:euphatics@gmail.com"
+                  href="mailto:theredsdigital@gmail.com"
                   className="group flex items-center gap-base p-base border border-hairline rounded-md hover:border-primary/40 transition-all duration-300 no-underline"
                   id="contact-email-link"
                 >
@@ -265,7 +265,7 @@ export default function ContactSection() {
                     <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
                   </svg>
                   <span className="text-body-sm text-body group-hover:text-ink transition-colors duration-200" style={{ fontFamily: 'var(--font-mono)' }}>
-                    euphatics@gmail.com
+                    theredsdigital@gmail.com
                   </span>
                 </a>
 

@@ -271,7 +271,7 @@ export default function StudioSection() {
       </div>
 
       {/* ══════════════════════════════════════════
-          Section 3 — About Euphatics
+          Section 3 — About The Reds Digital
       ══════════════════════════════════════════ */}
       <div className="relative z-10 max-w-[1200px] mx-auto px-lg pb-section mt-xl">
         {/* Section Header */}
@@ -279,14 +279,14 @@ export default function StudioSection() {
           <div className="flex items-center gap-sm mb-lg">
             <div className="w-10 h-[1px] bg-primary" />
             <span className="text-caption-uppercase text-primary tracking-[0.25em]">
-              About Euphatics
+              About The Reds Digital
             </span>
           </div>
           <h3 className="text-display-lg text-ink mb-base max-w-[600px]">
             Crafting digital excellence with focus and precision.
           </h3>
           <p className="text-body-md text-body max-w-[540px]">
-            We believe in staying lean, agile, and relentlessly focused on quality. At Euphatics, we partner with ambitious brands to design and engineer scalable digital products that deliver real business impact.
+            We believe in staying lean, agile, and relentlessly focused on quality. At The Reds Digital, we partner with ambitious brands to design and engineer scalable digital products that deliver real business impact.
           </p>
         </div>
 
@@ -323,7 +323,7 @@ export default function StudioSection() {
             <div className="flex items-center gap-xs mb-xs">
               <span className="w-2 h-2 rounded-full bg-primary" />
               <span className="text-caption-uppercase text-primary tracking-[0.15em] font-mono text-xs">
-                Careers at Euphatics
+                Careers at The Reds Digital
               </span>
             </div>
             <h4 className="text-display-sm text-ink mb-xs">

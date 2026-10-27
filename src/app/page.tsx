@@ -47,7 +47,7 @@ export default function Home() {
 
               {/* Headline */}
               <h1 className="text-[48px] lg:text-[64px] xl:text-[72px] font-bold leading-[1.1] tracking-[-0.03em] text-ink mb-lg">
-                Welcome to Euphatics,<br />
+                Welcome to The Reds Digital,<br />
                 <span className="text-primary">Digital experiences built for ambitious businesses.</span>
               </h1>
 

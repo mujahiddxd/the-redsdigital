@@ -118,14 +118,14 @@ const CATEGORIES = ['All', ...Array.from(new Set(PROJECTS.map((p) => p.category)
 /* ── Work Page Testimonials ── */
 const WORKS_TESTIMONIALS = [
   {
-    quote: "Euphatics took our vision for an AI-powered meeting platform and turned it into a reality. The automated minutes and smart task extraction they built are incredible. Our users love the structured idea boards.",
+    quote: "The Reds Digital took our vision for an AI-powered meeting platform and turned it into a reality. The automated minutes and smart task extraction they built are incredible. Our users love the structured idea boards.",
     name: "Alex Mercer",
     role: "Co-Founder",
     company: "Ideora",
     initials: "AM",
   },
   {
-    quote: "The e-commerce experience Euphatics crafted for us is so warm and inviting. The custom animations and storytelling layer truly capture the handmade essence of our crochet creations.",
+    quote: "The e-commerce experience The Reds Digital crafted for us is so warm and inviting. The custom animations and storytelling layer truly capture the handmade essence of our crochet creations.",
     name: "Clara & Hazel",
     role: "Founders",
     company: "Peak Blush",
